@@ -214,7 +214,7 @@ public class ControllerWindow extends JFrame {
                     mMainPresenter.loadDanMuResourceFromFile(filePath);
                 } else {
                     Toolkit.getDefaultToolkit().beep();
-                    JOptionPane.showMessageDialog(this, "请输入正确的网址！（例：" + Constants.BILIBILI_URL_SAMPLE + "）", "错误", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "请输入正确的网址！（" + Constants.BILIBILI_URL_SAMPLE + "）", "错误", JOptionPane.ERROR_MESSAGE);
                 }
                 break;
         }
