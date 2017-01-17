@@ -16,7 +16,7 @@ import com.danmuplayer.constants.Constants;
 public class ClawUtil {
 	
 	private static HttpClient sHttpClient = new DefaultHttpClient();
-	
+
 	public static String getBilibiliDanmuFileByUrl(final String url) {
 		String fileName = null;
         final HttpGet httpGet = new HttpGet(url);
@@ -25,7 +25,7 @@ public class ClawUtil {
         	httpGet.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 20000);
         	final HttpResponse response = sHttpClient.execute(httpGet);
             final HttpEntity entity = response.getEntity();
-            
+
             // unzip to get htmlString
             String htmlString = StringUtil.gzipInputStreamToUTF8String(entity.getContent());
 
@@ -36,7 +36,7 @@ public class ClawUtil {
                 int endIndex = htmlString.indexOf("&", startIndex);
                 cid = htmlString.substring(startIndex, endIndex);
             }
-            
+
             //get video name from htmlString
             String videoName = "";
             {
@@ -44,7 +44,7 @@ public class ClawUtil {
                 int endIndex = htmlString.indexOf("</title>", startIndex);
                 videoName = StringUtil.removeSpecialChar(htmlString.substring(startIndex, endIndex));
             }
-            		
+
             fileName = Constants.BILIBILI_DANMU_FILE_PATH_PATTERN.replace("VIDEO_NAME", videoName);
             if (!FileUtil.isFileExist(fileName)) {
             	String danMuUrl = Constants.BILIBILI_DANMU_URL_PATH_PATTERN.replace("CID", cid);
